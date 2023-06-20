@@ -1,5 +1,5 @@
-/* .highlight  { background: #ffffff; } Dean commented out */
-/* .highlight pre { background-color: #fff; font-size: 16px } */
+.highlight  { background: #272a26; }
+.highlight pre { background-color: #272a26; font-size: 16px }
 .highlight .c { color: #999988; font-style: italic } /* Comment */
 .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
 .highlight .k { font-weight: bold } /* Keyword */
@@ -25,8 +25,8 @@
 .highlight .kp { font-weight: bold } /* Keyword.Pseudo */
 .highlight .kr { font-weight: bold } /* Keyword.Reserved */
 .highlight .kt { color: #445588; font-weight: bold } /* Keyword.Type */
-.highlight .m { color: #009999 } /* Literal.Number */
-.highlight .s { color: #d14 } /* Literal.String */
+.highlight .m { color: #6aa84f } /* Literal.Number */
+.highlight .s { color: #238c00 } /* Literal.String */
 .highlight .na { color: #008080 } /* Name.Attribute */
 .highlight .nb { color: #0086B3 } /* Name.Builtin */
 .highlight .nc { color: #445588; font-weight: bold } /* Name.Class */
