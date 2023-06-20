@@ -13,7 +13,7 @@ html {
 body {
   font-family: 'Lora', 'Times New Roman', serif;
   font-size: 1.125rem;
-  color: {{ site.text-col | default: "#404040" }};
+  color: {{ site.text-col | default: "#F2F2F2" }};
   position: relative;
   background-color: {{ site.page-col | default: "#FFFFFF" }};
   {% if site.page-img %}
@@ -191,7 +191,7 @@ img {
 .navbar-custom .navbar-brand,
 .navbar-custom .navbar-nav .nav-link {
   font-weight: 800;
-  color: {{ site.navbar-text-col | default: "#404040" }};
+  color: {{ site.navbar-text-col | default: "#F2F2F2" }};
 }
 
 .navbar-toggler {
@@ -265,7 +265,7 @@ img {
   background-color: {{ site.navbar-col | default: "#EAEAEA" }};
   text-decoration: none !important;
   font-weight: normal;
-  color: {{ site.navbar-text-col | default: "#404040" }};
+  color: {{ site.navbar-text-col | default: "#F2F2F2" }};
   {% unless site.navbar-var-length %}
   white-space: normal;
   {% endunless %}
