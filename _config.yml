@@ -120,7 +120,6 @@ navbar-var-length: false
 
 # Personalize the colours in your website. Colour values can be any valid CSS colour
 
-#navbar-col: "#0b5394"
 navbar-col: "#1e1e1"
 navbar-text-col: "#F2F2F2"
 navbar-border-col: "#007acc"
@@ -141,7 +140,7 @@ footer-hover-col: "#F39200"
 #page-img: "/assets/img/miseq.png"
 
 # Suggest a colour for mobile browsers to use as the browser's theme. This is only supported by a few mobile browsers.
-#mobile-theme-col: "#0085A1"
+mobile-theme-col: "#007acc"
 
 # For any extra visual customization, you can include additional CSS files in every page on your site. List any custom CSS files here
 #site-css:
