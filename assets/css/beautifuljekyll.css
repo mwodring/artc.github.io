@@ -832,8 +832,9 @@ table {
   padding: 0;
 }
 table tr {
+  color: #bbbbbb;
   border-top: 1px solid #e1e6e2;
-  background-color: #1a261b;
+  background-color: #94aa73;
   margin: 0;
   padding: 0;
 }
@@ -866,7 +867,7 @@ table tr td :last-child {
 
 code {
   padding: 0.125rem 0.25rem;
-  color: #798683;
+  color: #bbbbbb;
   background-color: transparent;
   border-radius: 0.25rem;
 }
@@ -886,11 +887,13 @@ pre {
   padding: 0.59375rem;
 }
 .highlight pre {
+  color: #bbbbbb;
   border: none;
   background: none;
   margin: 0;
 }
 .highlight > pre {
+  color: #bbbbbb; 
   background-color: #272a26;
   background-size: auto 3em;
   background-position-y: 0.625rem;
@@ -898,6 +901,7 @@ pre {
   border-left: 0.4375rem solid #a2e902;
 }
 .highlight > pre:not([class~="highlight"]) { /* code block with line number */
+  color: #bbbbbb;
   padding: 0;
 }
 .highlight table,
