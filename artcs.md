@@ -13,7 +13,7 @@ This page covers further details about the work undertaken as part of the PhD un
 
 Andean Root and Tuber Crops (ARTCs) is a name given to a group of crops, domesticated in the Andes, which are grown for their roots, tubers and rhizomes. Sources differ on the number, but commonly, the following nine are considered to be members:
 
-![Oca](/assets/img/oca_leaf1.png#circ)
+![Oca](/assets/img/oca_leaf1.jpg#circ)
 
 * *Oxalis tuberosa*
 * *Smallanthus sonchifolius*
