@@ -108,6 +108,13 @@ img {
   max-width: 100%;
 }
 
+img[src$="#circ"] {
+   width:150px;
+   height:100px;
+   border-radius: 50%;
+   overflow: hidden;
+}
+
 .linked-section {
   padding-top: 3.75rem;
   margin-top: -1.5625rem;
@@ -843,7 +850,7 @@ table tr {
   padding: 0;
 }
 table tr:nth-child(2n) {
-  background-color: #252c2c;
+  background-color: #303d31;
 }
 table tr th {
   font-weight: bold;
