@@ -832,14 +832,14 @@ table {
   padding: 0;
 }
 table tr {
-  color: #bbbbbb;
+  color: #1f2927;
   border-top: 1px solid #272a26;
   background-color: #4b513e;
   margin: 0;
   padding: 0;
 }
 table tr:nth-child(2n) {
-  background-color: #2f372b;
+  background-color: #252c2c;
 }
 table tr th {
   font-weight: bold;
