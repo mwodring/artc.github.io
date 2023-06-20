@@ -833,12 +833,12 @@ table {
 }
 table tr {
   border-top: 1px solid #cccccc;
-  background-color: #204000;
+  background-color: #152b1a;
   margin: 0;
   padding: 0;
 }
 table tr:nth-child(2n) {
-  background-color: #204000;
+  background-color: #21331e;
 }
 table tr th {
   font-weight: bold;
