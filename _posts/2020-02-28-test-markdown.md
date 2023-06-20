@@ -26,7 +26,7 @@ Here's a useless table:
 
 How about a yummy crepe?
 
-![Crepe#circ](https://s3-media3.fl.yelpcdn.com/bphoto/cQ1Yoa75m2yUFFbY2xwuqw/348s.jpg)
+![Crepe](https://s3-media3.fl.yelpcdn.com/bphoto/cQ1Yoa75m2yUFFbY2xwuqw/348s.jpg#circ)
 
 It can also be centered!
 
