@@ -70,7 +70,9 @@ hr.small {
 
 ul {
 list-style-type: square;
-font-family: sans-serif;
+font-family: "Helvetica Neue";
+border-color: site.navbar-border-col;
+border-width: 0.25rem;
 }
 
 /* fix in-page anchors to not be behind fixed header */
@@ -109,8 +111,8 @@ img {
 }
 
 img[src$="#circ"] {
-   width:150px;
-   height:100px;
+   width:200px;
+   height:200px;
    border-radius: 50%;
    overflow: hidden;
 }
