@@ -10,7 +10,7 @@
 ############################
 
 # Name of website
-title: Mog's Toolbox
+title: 沒骨
 
 # Your name to show in the footer
 author: Morgan Wodring
@@ -20,7 +20,7 @@ author: Morgan Wodring
 ###############################################
 
 navbar-links:
-  Dev: "aboutme"
+  About: "aboutme"
   Projects:
     - Viruses in ARTCs : "artcs"
     - Public Scripts : "scripts"
@@ -120,8 +120,9 @@ navbar-var-length: false
 
 # Personalize the colours in your website. Colour values can be any valid CSS colour
 
-navbar-col: "#0b5394"
-navbar-text-col: "F2F2F2"
+#navbar-col: "#0b5394"
+navbar-col: "#1e1e1"
+navbar-text-col: "#F2F2F2"
 navbar-border-col: "#007acc"
 page-col: "#252526"
 text-col: "#F2F2F2"
