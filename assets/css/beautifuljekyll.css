@@ -913,7 +913,7 @@ pre {
   margin: 0;
 }
 .highlight pre.lineno {
-  color: rgba(0,0,0,0.3);
+  color: #6aa84f;
   border-radius: 0;
   border-right: 2px solid #444;
 }
@@ -926,7 +926,7 @@ pre {
           user-select: none;
 }
 .lineno::selection, .lineno::-moz-selection {
-  background: #272a26;
+  background: #ccff99;
 }
 
 /* Fix table border github gist snippets */
