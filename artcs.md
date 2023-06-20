@@ -1,4 +1,8 @@
-Hello! If you're here, you probably read my poster at the IPPC Conference at Lyon, 2023. If you'd like to speak with me (Morgan) further, go ahead and click the 'Contact' link below to find me.
+---
+title: Novel Virus Findings in Niche Tuber Crops Sourced from eCommerce Websites
+---
+
+Hello! If you're here, you probably read my poster at the IPPC Conference at Lyon, 2023. If you'd like to speak with me (Morgan) further, go ahead and click the 'Contact' link above to find me.
 
 This site covers further details about the work undertaken as part of the PhD under the title above. The aim is to aid in risk assessment and investigate the virome of some [niche crops](#artc) commonly available on e-commerce websites such as eBay within the EPPO region.
 
@@ -8,15 +12,15 @@ Third item
 
 Andean Root and Tuber Crops (ARTCs) is a name given to a group of crops, domesticated in the Andes, which are grown for their roots, tubers and rhizomes. Sources differ on the number, but commonly, the following nine are considered to be members:
 
-*Oxalis tuberosa*
-*Smallanthus sonchifolius*
-*Ullucus tuberosus*
-*Pachyrhizus ahipa*
-*Lepidium meyenii*
-*Arracacia xanthorrhiza*
-*Canna edulis*
-*Mirabilis expansa*
-*Tropaeolum tuberosum*
+* *Oxalis tuberosa*
+* *Smallanthus sonchifolius*
+* *Ullucus tuberosus*
+* *Pachyrhizus ahipa*
+* *Lepidium meyenii*
+* *Arracacia xanthorrhiza*
+* *Canna edulis*
+* *Mirabilis expansa*
+* *Tropaeolum tuberosum*
 
 The samples for the initial HTS run of this PhD came from eBay purchases from France and Poland. These arrived via conventional post, with the Polish set in particular arriving in poor condition. These came in a brown mailing parcel wrapped in newspaper, sold as 'mixed'; many had mould. Once the especially mouldy specimens were discarded, the majority of the tubers did emerge.
 
