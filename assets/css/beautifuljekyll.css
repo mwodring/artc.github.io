@@ -68,6 +68,11 @@ hr.small {
   border-radius: 0.1875rem;
 }
 
+ul {
+list-style-type: square;
+font-family: sans-serif;
+}
+
 /* fix in-page anchors to not be behind fixed header */
 :target:before {
   content: "";
@@ -832,9 +837,8 @@ table {
   padding: 0;
 }
 table tr {
-  color: #1f2927;
   border-top: 1px solid #272a26;
-  background-color: #4b513e;
+  background-color: #2b312b;
   margin: 0;
   padding: 0;
 }
