@@ -10,7 +10,7 @@
 ############################
 
 # Name of website
-title: Assessing The Risk Of Viruses From Niche Tuber Crops Of Andean Origin
+title: Mog's Toolbox
 
 # Your name to show in the footer
 author: Morgan Wodring
@@ -20,11 +20,10 @@ author: Morgan Wodring
 ###############################################
 
 navbar-links:
-  About Me: "aboutme"
-  # Resources:
-  #  - Beautiful Jekyll: "https://beautifuljekyll.com"
-  #  - Learn markdown: "https://www.markdowntutorial.com/"
-  #Author's home: "https://deanattali.com"
+  Dev: "aboutme"
+  Projects:
+    - Viruses in ARTCs : "artcs"
+    - Public Scripts : "scripts"
 
 ################
 # --- Logo --- #
@@ -51,7 +50,7 @@ round-avatar: true
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
   email: "morgan.wodring@fera.co.uk"
-  rss: true  # remove this line if you don't want to show an RSS link at the bottom
+  # rss: true  # remove this line if you don't want to show an RSS link at the bottom
   github: mwodring
   twitter: mognotthemoogle
 #  medium: yourname
@@ -86,6 +85,7 @@ rss-description: This website is a virtual proof that I'm awesome
 # Select which social network share links to show in posts
 share-links-active:
   twitter: true
+  github: true
 
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
@@ -101,7 +101,7 @@ feed_show_excerpt: true
 feed_show_tags: true
 
 # Add a search button to the navbar
-post_search: true
+# post_search: true
 
 # Add a button in the footer to edit the current page. Only works if your website is hosted on GitHub
 edit_page_button: true
@@ -137,7 +137,7 @@ footer-hover-col: "#0085A1"
 
 #navbar-img: "/assets/img/bgimage.png"
 #footer-img: "/assets/img/bgimage.png"
-#page-img: "/assets/img/bgimage.png"
+page-img: "/assets/img/bgimage.png"
 
 # Suggest a colour for mobile browsers to use as the browser's theme. This is only supported by a few mobile browsers.
 #mobile-theme-col: "#0085A1"
