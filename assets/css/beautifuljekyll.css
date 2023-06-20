@@ -54,7 +54,7 @@ a:focus {
   color: {{ site.hover-col | default: "#0085A1" }};
 }
 blockquote {
-  color: #808080;
+  color: #6aa84f;
   font-style: italic;
 }
 blockquote p:first-child {
@@ -842,7 +842,7 @@ table tr:nth-child(2n) {
 }
 table tr th {
   font-weight: bold;
-  border: 1px solid #a2e902;
+  border: 1px solid #6aa84f;
   text-align: left;
   margin: 0;
   padding: 0.375rem 0.8125rem;
@@ -872,12 +872,14 @@ code {
 }
 
 pre code {
+    color: site.text-col;
   padding: 0;
   background-color: #2f372b;
   border-radius: 0;
 }
 
 pre {
+  color: site.text-col;
   font-size: 0.875rem;
   line-height: 1.5em;
   border-radius: 0.25rem;
