@@ -1,3 +1,0 @@
-libgl1
-xvfb
-x11-utils
