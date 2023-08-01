@@ -23,7 +23,7 @@ navbar-links:
   About: "aboutme"
   Projects:
     - Viruses in ARTCs : "artcs"
-    - Public Scripts : "scripts"
+    - Make Pretty Phylogenies : "generate_tree"
 
 ################
 # --- Logo --- #
