@@ -24,7 +24,7 @@
 .highlight .kd { font-weight: bold } /* Keyword.Declaration */
 .highlight .kp { font-weight: bold } /* Keyword.Pseudo */
 .highlight .kr { font-weight: bold } /* Keyword.Reserved */
-.highlight .kt { color: #445588; font-weight: bold } /* Keyword.Type */
+.highlight .kt { color: #d900d9; font-weight: bold } /* Keyword.Type */
 .highlight .m { color: #6aa84f } /* Literal.Number */
 .highlight .s { color: #238c00 } /* Literal.String */
 .highlight .na { color: #008080 } /* Name.Attribute */
@@ -35,7 +35,7 @@
 .highlight .ne { color: #990000; font-weight: bold } /* Name.Exception */
 .highlight .nf { color: #666600; font-weight: bold } /* Name.Function */
 .highlight .nn { color: #555555 } /* Name.Namespace */
-.highlight .nt { color: #000080 } /* Name.Tag */
+.highlight .nt { color: #59b300 } /* Name.Tag */
 .highlight .nv { color: #80ff00 } /* Name.Variable */
 .highlight .ow { font-weight: bold } /* Operator.Word */
 .highlight .w { color: #bbbbbb } /* Text.Whitespace */
