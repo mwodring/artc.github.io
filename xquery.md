@@ -573,9 +573,17 @@ return <li class="$search/Statistics/@hsp-len">$search/Statistics/db-num</li>
 ## Windowing
 
 A window clause, like group by, creates an iteration over a sequence of items. It creates a window based on starting and ending conditions, and evaluates the return clause once per window.
-With windows, the original order of the items is preserved, and in groups, they're arranged into those groups.
+With windows, the original order of the items is preserved, and in groups, they're arranged into those groups. Because the order is retained you can put constraints on items that come before and after the start and end of the window. For example, starting a window if a value changes compared to the previous item.
 
-e.g. 
+Even numbers:
+
+```html
+for tumbling window $w in (1, 4, 3, 12, 5, 13, 8)
+	start $s when $s mod 2 = 0
+return <window>{$w}</window>
+```
+
+Results in three windows of (4, 3), (12, 5, 13) and (8).
 
 ## Namespaces
 
