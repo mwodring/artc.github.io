@@ -10,8 +10,10 @@ for (i = 0; i < coll.length; i++) {
         var content = children[i];
         if (content.style.display === "block" && content.classList.contains("content")) {
             content.style.display = "none";
-        } else {
+        } else if (content.classList.contains("content")) {
             content.style.display = "block";
+        } else {
+            content.style.display = "inline-block";
         }
         }
     });
