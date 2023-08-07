@@ -568,6 +568,28 @@ order by $search/Statistics/db-num
 return <li class="$search/Statistics/@hsp-len">$search/Statistics/db-num</li>
 ```
 
+## Combining results
+
+Simplest, sequence constructor:
+
+```html
+let $species := //*:title
+let $bitscore := //*:bit-score
+return ($species, $bitscore)
+```
+
+This simply appends all bitscores to the end of all species in the same order they were put in. 
+
+### Union
+
+   //\*:HitDescr(title | query-title)
+ 
+This can also form a union of two separate path expressions:
+
+```html
+//*:Search//*:HitDescr/title | //*:Search//Hit/hsps/Hsp[1]/bitscore
+```
+
 <a name="windowing"></a>
 ## Windowing
 

@@ -1139,7 +1139,7 @@ pre {
 }
 
 .collapsible {
-  background-color: #6aa84f;
+  background-color: #354643;
   color: #F2F2F2;
   cursor: pointer;
   padding: 18px;
@@ -1151,7 +1151,7 @@ pre {
 }
 
 .active, .collapsible:hover {
-  background-color: #a2e902;
+  background-color: #354643;
 }
 
 .content {
