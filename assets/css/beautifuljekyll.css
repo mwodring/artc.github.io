@@ -1143,7 +1143,6 @@ pre {
   color: #F2F2F2;
   cursor: pointer;
   border: none;
-  text-align: left;
   outline: none;
 }
 
@@ -1161,5 +1160,5 @@ pre {
 
 button {
     padding: 0 0 0 0px;
-    float: left;
+    display: inline-block;
 }

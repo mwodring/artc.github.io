@@ -152,7 +152,7 @@
             {% capture jekyll_toc %}{{ jekyll_toc }}</li>{% endcapture %}
         {% endif %}
 
-        {% capture jekyll_toc %}{{ jekyll_toc }}<span><button class="collapsible">+</button><li{{ listItemClass }}>{{ listItem }}</span><br>{% endcapture %}
+        {% capture jekyll_toc %}{{ jekyll_toc }}<span><li{{ listItemClass }}><button class="collapsible">+</button>{{ listItem }}</span><br>{% endcapture %}
 
         {% assign lastLevel = currLevel %}
         {% assign firstHeader = false %}
