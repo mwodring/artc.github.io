@@ -472,7 +472,7 @@ It also changes the binding. Before the group by clause, your $i variable is bou
 Group by can use one or more grouping clauses separated by commas, each of which is a grouping variable name ($) followed by an optional expression and an optional collation specification. You can also use as to cast the group to a type. Collations are used to compare strings for equality.
 As before, multiple grouping clauses can be included, separated by commas, such as by query-id and by title. There is no limit to the number.
 
-#### Variable shortcut
+### Variable shortcut
 
   group by $species := $HitDescr/title
   order by $species
