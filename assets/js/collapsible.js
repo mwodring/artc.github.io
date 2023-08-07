@@ -6,7 +6,7 @@ for (i = 0; i < coll.length; i++) {
     this.classList.toggle("active");
     var content = this.childNodes;
     for(var i = 0, size = content.length; i < size ; i++){
-      if (content[i]].style.display === "block") {
+      if (content[i].style.display === "block") {
         content[i].style.display = "none";
       } else {
         content[i].style.display = "block";
