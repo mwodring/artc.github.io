@@ -30,6 +30,10 @@ common-js:
 
   {% include nav.html %}
 
+  {% if page.toc %}
+  {% include toc.html html=content item_class="collapsible" submenu_class="content" %}
+  {% endif %}
+  
   {{ content }}
 
   {% include footer.html %}

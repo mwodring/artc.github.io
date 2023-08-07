@@ -1,8 +1,7 @@
 ---
 layout: post 
+toc: true
 ---
-
-{% include toc.html html=content item_class="collapsible" submenu_class="content" %}
 
 # XQuery Notes
 
@@ -589,16 +588,31 @@ Results in three windows of (4, 3), (12, 5, 13) and (8).
 
 Tumbling windows never overlap each other, sliding windows can.
 
+### Conditions
+
 The following can be declared as variables as above:
 
 - start
 - end (optional in tumbling windows to end a window before the next one starts; required in sliding windows)
-- at ()
+- at (based on position, useful for creating windows based on the position of the item in a sequence)
 - as (sequence type)
 - previous
 - next 
 
 There is also only.
+
+#### At examples
+
+Windows of three items:
+
+```html
+for tumbling window $w in (1, 4, 3, 12, 5, 13, 8)
+	start at $s-pos when true()
+	end at $e-pos when $e-pos - $s-pos = 2
+return $w
+```
+
+The when true() means a window must always start immediately when another one ends, or at the beginning. 
 
 ## Namespaces
 
