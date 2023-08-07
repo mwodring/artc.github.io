@@ -569,18 +569,10 @@ order by $search/Statistics/db-num
 return <li class="$search/Statistics/@hsp-len">$search/Statistics/db-num</li>
 ```
 
-#### Aggregrating and Grouping
+<a name="windowing"></a>
+## Windowing
 
-A nonsense sum of db-num here as an example.
-
-```html
-xquery version="3.1"
-for $search in //Search
-let $species := $search/hits/HitDescr/title
-group by $species
-order by $species
-return <species name="{$species}" totQuantity="{sum($search/Statistics/db-num)}"/>
-```
+A window clause, like group by, creates an iteration over a sequence of items.
 
 ## Namespaces
 
@@ -934,7 +926,7 @@ let $data := map {
   )
 }
 ```
-Tumbling windows can help with very big memory usage. See the [SO thread this segment is adapted from](https://stackoverflow.com/questions/66353741/basex-xquery-out-of-memory-when-writing-results-to-csv-file) for more.
+[Tumbling windows](#windowing) can help with very big memory usage. See the [SO thread this segment is adapted from](https://stackoverflow.com/questions/66353741/basex-xquery-out-of-memory-when-writing-results-to-csv-file) for more.
 
 ### Method 3: string-join and write-text-lines
 
