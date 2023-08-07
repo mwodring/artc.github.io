@@ -8,7 +8,7 @@ for (i = 0; i < coll.length; i++) {
     if (content.style.display === "block") {
       content.style.display = "none";
     } else {
-      content.style.display = "block";
+      content.style.display = "inline-block";
     }
   });
 }
