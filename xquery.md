@@ -1,5 +1,6 @@
 ---
 layout: page
+before-content: toc_beautiful.html
 toc: true
 ---
 
@@ -613,6 +614,16 @@ return $w
 ```
 
 The when true() means a window must always start immediately when another one ends, or at the beginning. 
+
+#### Previous and Next examples
+
+Create a header when the species changes:
+
+```html
+for tumbling window $w in //*:HitDescr
+	start $s previous $s-prev when $s/title != $s-prev/title
+	return (<p>Species {data($s/query-title)}</p>, $w)
+```
 
 ## Namespaces
 
