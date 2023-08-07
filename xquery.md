@@ -1,8 +1,8 @@
 ---
 layout: post 
 ---
-* Table of Contents
-{:toc}
+
+{% include toc.html html=content % class="collapsible" item_class="collapsible"}
 
 # XQuery Notes
 
@@ -778,6 +778,55 @@ As above, multiple variables can be bound by separating them with commas:
 some $i in (1 to 3), $j in (10,11)
 satisfies $j - $i = 7
 ```
+
+## Functions
+
+There is no context item inside function bodies.
+
+### User-defined syntax 
+
+Can be in the prologue or in an external library:
+
+```html
+declare function local:myFunc(
+	$var1 as xs:decimal?,
+	$var2 as xs:integer?) as xs:decimal?
+	{
+	let $var1 := $var1, $var2 @= $var2
+	return $var2 - $var1
+	};
+```
+
+### Signatures 
+
+#### Occurence indicators
+
+- ? for zero or one items
+- \* for zero, one or more items
+- + for one or more items
+- No indicator (expects one and only one)
+
+There is no difference between an item, and a sequence that contains only one item. XQuery also has conversion rules for casting when a different type is passed as an argument than what it expects, such as integer to decimal.
+
+The type after the parameters is the return type of the function.
+
+A function can have multiple signatures. 
+
+### Arrow Operator
+
+    "abc"==>upper-case()
+
+Is equivalent to:
+
+    upper-case("abc")
+	
+This is useful for chaining function calls like with piping. Before:
+
+    tokenize(normalize-space(replace($string, 'a' 'b')), "\s")
+   
+ After:
+ 
+     $string==>replace('a', 'b')==>normalize-space()==>tokenize("\s")
 
 # Basex
 
