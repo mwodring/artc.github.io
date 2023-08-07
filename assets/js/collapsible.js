@@ -9,7 +9,7 @@ for (i = 0; i < coll.length; i++) {
         for (i = 0; i < children.length; i++) {
         var content = children[i];
         if (content.style.display === "block" && content.classList.contains("content")) {
-            subset.style.display = "none";
+            content.style.display = "none";
         } else {
             content.style.display = "block";
         }

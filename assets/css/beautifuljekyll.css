@@ -1148,6 +1148,7 @@ pre {
 
 .active, .collapsible:hover {
   background-color: #80ff00;
+  display: inline-block;
 }
 
 .content {
