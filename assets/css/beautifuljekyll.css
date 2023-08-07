@@ -1159,4 +1159,5 @@ pre {
   display: none;
   overflow: hidden;
   background-color: #354643;
+  transition: max-height 0.2s ease-out;
 }

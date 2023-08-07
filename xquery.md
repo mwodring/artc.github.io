@@ -2,7 +2,7 @@
 layout: post 
 ---
 
-{% include toc.html html=content class="collapsible" item_class="collapsible" %}
+{% include toc.html html=content item_class="collapsible" submenu_class="content" %}
 
 # XQuery Notes
 
@@ -584,6 +584,21 @@ return <window>{$w}</window>
 ```
 
 Results in three windows of (4, 3), (12, 5, 13) and (8).
+
+### Sliding vs. Tumbling
+
+Tumbling windows never overlap each other, sliding windows can.
+
+The following can be declared as variables as above:
+
+- start
+- end (optional in tumbling windows to end a window before the next one starts; required in sliding windows)
+- at ()
+- as (sequence type)
+- previous
+- next 
+
+There is also only.
 
 ## Namespaces
 
