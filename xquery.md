@@ -590,6 +590,18 @@ This can also form a union of two separate path expressions:
 //*:Search//*:HitDescr/title | //*:Search//Hit/hsps/Hsp[1]/bitscore
 ```
 
+### Intersect
+
+```html 
+//*:Search//*:HitDescr/title intersect $searchTerms
+```
+
+### Except
+
+```html 
+//*:Search//*:HitDescr/(* except id)
+```
+
 <a name="windowing"></a>
 ## Windowing
 
