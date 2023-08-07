@@ -139,7 +139,7 @@
         {% endif %}
 
         {% if currLevel > lastLevel %}
-            {% capture jekyll_toc %}{{ jekyll_toc }}<span><button class="collapsible">+</button><{{ listModifier }}{{ subMenuClass }}></span>{% endcapture %}
+            {% capture jekyll_toc %}{{ jekyll_toc }}<{{ listModifier }}{{ subMenuClass }}>{% endcapture %}
         {% elsif currLevel < lastLevel %}
             {% assign repeatCount = lastLevel | minus: currLevel %}
 
