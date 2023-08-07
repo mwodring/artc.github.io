@@ -6,6 +6,7 @@ layout: post
 
 # XQuery Notes
 
+Adapted mostly from XQuery by Priscilla Walmsley, with some additions adapted from Basex talk, W3Schools and Stack Overflow.
 Note that while sometimes I use @id and such as example attributes, the XML2 blast output has no attributes.
 This is in fact a preferred choice for pure .xml files from some developers.
 
@@ -13,90 +14,98 @@ This is in fact a preferred choice for pure .xml files from some developers.
 
 ### Basics
 
-#### Access everything called Results in the database
+#### Access everything called Results in context
 
-    blast//Results
+    //Results
 
 #### Access all Results by path
 
-    blast/BlastXML2/BlastOutput2/Report/Results
+    /BlastXML2/BlastOutput2/Report/Results
 
-#### Access all BlastOutput2 children of outmermost path
+#### Access all BlastOutput2 children of outermost path
 
 ```html
-blast/*/BlastOutput2
+/*/BlastOutput2
 ```
 	
 #### Access all id attributes of search elements
 
-	db:open('blast')//Search/@id
+	//Search/@id
 	
 #### Access all child elements of BlastXML2
 
-```html
-db:open('blast')/BlastXML2/*
-```
+
+    /BlastXML2/*
+
 
 #### All grandchildren of Search that are taxid
 
 ```html
-$search/*/taxid
+//Search/*/taxid
 ```
 
 Path expressions return nodes in document order, i.e. the same order as they appear in the document.
-	
+
+## Comments
+
+XQuery comments are between : and :. They are not present in the outputted document.
+
+```html 
+<!-- XML comments will appear in the final document -->
+```
+
 ## Filter (predicates)
 
-The @ indicates that query-title is an attribute, not a child element.
+The @ indicates that query-title is an attribute, not a child element. This isn't the case in the real xml, this is just an example.
 
 ```html
-blast//Search[@query-title="My title"]
+//Search[@query-title="My title"]
 ```
 
 With a number, it becomes an index, e.g. the second Search element in the database.
 
 ```html
-blast//Search[2]
+//Search[2]
 ```
 
 ### Multiple predicates
 
 ```html
-$search/HitDescr[id = "Cyanobacteria"][taxid = 2]
+//Search//HitDescr[id = "Cyanobacteria"][taxid = 2]
 ```
 
 Is equivalent to:
 
 ```html 
-$search/HitDescr[id = "Cyanobacteria" and taxid = 2]
+//Search//HitDescr[id = "Cyanobacteria" and taxid = 2]
 ```
 
 The order matters:
 
 ```html
-$search/HitDescr[2][@taxid = 2]
+//Search//HitDescr[2][@taxid = 2]
 ```
 
 Is the second child of HitDescr if its taxid attribute is 2.
 
 ```html
-$search/HitDescr[@taxid = 2][2]
+//Search//HitDescr[@taxid = 2][2]
 ```
 
 Is the second child that has a taxid attribute of 2, which may not be the second.
 
 ### Using functions etc.
 
-All HitDescr that have an attribute containing "virus":
+All HitDescr that have an id attribute containing "virus":
 
 ```html
-$search/HitDescr[contains(@id, "virus")]
+//Search//HitDescr[contains(@id, "virus")]
 ```
 
 Filter on a variable only if it's true:
 
 ```html
-//BlastXML2/Results/Search/[if ($hits) then $hits/@id else false()]
+//BlastXML2/Results/Search/[if ($hits) then $hits/Hit else false()]
 ```
 
 Return if it has at least one child other than Statistics:
@@ -117,15 +126,49 @@ An attribute if it exists, else 0:
 (@bit-score, 0.0)[1]
 ```
 
+## Comparisons 
+
+Returns true if any bitscore children have a value greater than 10:
+
+```html
+$hit//*:bit-score > 10
+```
+
+Returns true if there is only one item returned by the expression, and its value is greater than 10. If more than one item is returned, an error occurs:
+
+```html
+$hit//*:bit-score > 10
+```
+
+## Distinct Values
+
+The function selects distinct atomic values from a sequence. e.g. a series of those distinct values. For example if your BlastXML query has thirty hits but 28 of them are "Fish", one is "Cat" and one is "Dog":
+
+```html
+distinct-values(//*:title)
+```
+
+Returns ("Cat", "Dog", "Fish").
+
+###Combinations
+
+Because distinct-values only takes one argument you need to split it up:
+
+```html
+let $searches := //*:Search
+for $species in distinct-values($searches//*:title)
+	$id in distinct-values($searches//*:id)
+return <result species="{$species} id="{$id}"/>
+```
+
 ## Context
 
 Context can be set by the query start:
 
 ```html
-db:open('blast')/BlastXML2
+/BlastXML2
 ```
 
-db:open is Basex specific and returns the node of the database, which becomes the context item.
 When the context item is a node (as opposed to <div class="tooltip">anatomic value<span class="tooltiptext">"a simple data value with no markup associated with it" i.e. no tags</span></div>) it is called the context node.
 
 Variables such as $search also set context, of zero or more nodes.
@@ -199,7 +242,9 @@ Selects all HitDescr child elements that are in any namespace or no namespace.
 
 ### Other types of Step
 
-    db:open('blast)//Search/HitDescr/(id | taxid)
+```html
+//Search/HitDescr/(id | taxid)
+```
 	
 Picks both id and taxid from the element, where | acts as a union operator.
 
@@ -226,22 +271,255 @@ Returns xs:string values that are substrings of ids.
 ### for, let, where, order by, return
 
 ```html
-for $search in blast//Search
-where $search/@query-title = "My title"
+for $search in //Search
+where $search/query-title = "My title"
 order by $search/Statistics/db-num
 return $search/Statistics/db-num
 ```
 
-Note that 'order by' isn't possible in simple path expressions.
+Note that 'order by' isn't possible in simple path expressions as it is here.
+The for clause is similar to loops in procedural programming languages, but XQuery is functional. The iterations are considered to be in no particular order and as a result, counting using a variable is not possible, nor can a person continuously append to a string which each iteration. The upside is that XQuery is fast for its intended purpose.
+
+#### a note on equality
+
+XQuery considers type when checking equality using =. Unless using a schema, entries are untyped and values are compared as strings.
+Only numeric types consider equivalent numbers the same, e.g. as a string 05 and 5 are different, but as a numeric they are the same.
+
+### Range Expressions
+
+```html
+for $i in 1 to 3
+return <oneEval>{$1}</oneEval>
+```
+
+Parenthesised expressions:
+
+    for $i in (1 to 3, 8 to 10)
+
+Using variables:
+
+    for $i in 1 to $range_end
+	
+If the first integer is greater than the second, such as 3 to 1, or if either operand is the empty sequence the expression evaluates to the empty sequence.
+
+Descending:
+
+    for $i in reverse(1 to 3)
+	
+Incrementing other than 1:
+
+```html
+for $i in (1 to 100)[. mod 2 = 0]
+```
 
 ### With let
 
 ```html
-for $search in blast//Search
+for $search in //Search
 let $num := $search/db-num
 where $search/@query-title = "My title"
 order by $num
 return $num 
+```
+
+A for clause results in iteration, while a let clause binds the whole sequence to a variable. (It's called the binding sequence with the for X in Y.)
+This means that 'for' statements cause the rest of the FLWOR to be evaluated multiple times. A 'let' statement creates a series.
+
+After binding a variable with let, you can then proceed to iterate over it with for, and multiple lets can be assigned in one line using commas. 
+
+### Multiple for clauses
+
+```html
+for $i in (1,2)
+for $j in ("a", "b")
+return <oneEval>i is {$i} and j is {$j}</oneEval>
+```
+
+This can also be specified in one line, using commas:
+
+```html
+for $i in (1,2), $j in ("a", "b")
+```
+
+This is similar to a nested loop in other languages. The order matters; it takes the first value is $i and it iterates over the values of $j. Then takes the second value of $i to iterate over the second value of $j, etc.
+
+### Inside function calls
+
+```html 
+max(for $hsp in //Search//hsps
+	return xs:integer($hsp/bit-score))
+```
+
+### at, as, allowing empty
+
+#### at: positions
+
+#### as: type declarations
+
+#### allowing empty: outer joins
+
+FLWORs default to inner joins, which leads to:
+
+### Joins
+
+#### Inner joins
+
+This joins data from multiple sources, e.g. different xml documents - say if you have a custom database, you could combine your BlastXML2 with a .xml mapping the ''accessions'' which are now just in number order back to the actual accession, if your database is a subset of NCBI's GenBank.
+
+```html
+for $num in doc("blast.xml")//accession
+	$entry in doc("database_info.xml")//entry[number = $num]
+return <number = "{$num}",
+		accession = "{"$entry/accession"}"/>
+```
+
+You can also use a where clause instead of a predicate to achieve the same thing.
+Joins can have three or potentially more sources, too. 
+
+#### Outer joins
+
+Add 'allowing empty' to force a return clause to evaluate once even if there is no matching element (e.g. results in an empty sequence) between the two sources, rather than zero times.
+
+## Ordering
+
+Paths and FLWORs default to document order. FLWORs can change this like so:
+
+```html
+for $hit in //*:Hit
+order by $hit//*:bit-score
+return $hit
+```
+
+All of the values returned by a single ordering expression must have the same type. Numeric types can be compared with one another, like integers and decimals. Untyped values are treated like strings.
+You can sort by anything as long as it returns just one value.
+
+#### Sorting with if else
+
+```html
+order by (if ($fur/@colour) then $fur/@colour else "hairless")
+```
+
+### Parameterising the key
+
+```html
+order by $hsp/@*[name()=$param]
+```
+
+### Modifiers
+
+- ascending
+- descending 
+- *empty greatest* and *empty least* put empty sequences/NaN first and last respectively. This does not apply to zero length strings, which always sort before other strings.
+- [collation](#collation)
+
+### Multiple
+
+Separate by commas, and XQuery will return them ordered in the order you pass the specifications in. Such as by query-title, then by hit title.
+
+### stable
+
+Determines what happens when sorting and two values are the same if you don't want the implementation to decide that for you.
+
+    stable order by $hsp/bit-score
+	
+Returns them in the order the for clause returns them in, which is usually document order.
+
+### Specifying in the prologue
+
+    declare default order empty greatest;
+
+### sort function (3.1 only)
+
+Return bit-scores sorted by their contents:
+
+```html
+sort(//*:bit-score)
+```
+Return searches sorted by their query-title child:
+
+```html
+sort(//*:Search, function($search) {$search//*:query-title})
+```
+
+### Comparisons 
+
+Compare if an item precedes or follows another in document order (in document order, parents precede children):
+
+```html
+<< and >>
+```
+
+### Unordered (often faster)
+
+Enclose the expression in a call to unordered(), or use the unordered expression.
+The difference is that the unordered expression affects embedded expressions, not just the main expression passed as an argument. Enclosed in curly brackets instead:
+
+   unordered {}
+   
+You can override this using the ordered expression inside, for when sub-sections of the query do care about order.
+
+You can also declare this as an option in the prologue for the entire query:
+
+    declare ordering unordered;
+
+### Avoiding re-sorting in document order
+
+If you assign a sorted variable then later access it with a for/in, it will be returned in document order again unless you specify the order.
+
+## Grouping (3.0 and greater)
+
+This changes the iteration of the FLWOR expression. It will iterate and return once for every group of items.
+It also changes the binding. Before the group by clause, your $i variable is bound to one element at a time. After grouping it is bound to a sequence of one or more items at a time based on the current group.
+Group by can use one or more grouping clauses separated by commas, each of which is a grouping variable name ($) followed by an optional expression and an optional collation specification. You can also use as to cast the group to a type. Collations are used to compare strings for equality.
+As before, multiple grouping clauses can be included, separated by commas, such as by query-id and by title. There is no limit to the number.
+
+#### Variable shortcut
+
+  group by $species := $HitDescr/title
+  order by $species
+
+The grouping variable must be bound to a single atomic value, called the grouping key. In this case this only works if each HitDescr has only one title item.
+
+### More complex specifications
+
+Group based on the boolean of if bit-score is over 50:
+
+```html
+group by $n := $hit/hsps/Hsp[1]/bit-score > 50
+```
+
+Grouping on a range of values:
+
+```html
+group by $g := $query/num - ($query/num mod 100)
+return <group querynumrange="{$g}-{$g+99}" count=£{count{$item}}"/>
+```
+
+## Aggregation 
+
+These are a group of functions to summarise and aggregate returned values. 
+
+- count 
+- sum
+- min (treats zero length strings as the minimum. A function would be needed to ignore them.)
+- max 
+- avg (mean) (ignores empty values. You'd need to write a function to count empty values as zero.)
+
+### Aggregating on multiple values
+
+Add another grouping specification:
+
+```html
+group by $s := $query//*:title[1], $b := $query/Hit/hsps/Hsp[1]/bit-score
+order by $s, $b
+return <group species = "{$s}" bitscore="{$b}" best="{max($b)}" total="{count($s)}"/>
+```
+
+### Constraining and sorting
+
+```html
+where max($bitscore) gt 1
+order by count($species)
 ```
 
 ## Returning values and constructors
@@ -252,7 +530,7 @@ return $num
 
 ```html
 <ul>{
-for $search in blast//Search
+for $search in //Search
 where $search/@query-title = "My title"
 order by $search/Statistics/db-num
 return $search/Statistics/db-num  }
@@ -261,7 +539,7 @@ return $search/Statistics/db-num  }
 Not inside braces is returned as is:
 
 ```html
-<h1>There are {count(blast//Search)} queries.</h1>
+<h1>There are {count(//Search)} queries.</h1>
 ```
 
 Note that if you return an element, its children are included too.
@@ -270,7 +548,7 @@ Note that if you return an element, its children are included too.
 
 ```html
 <ul>{
-for $search in blast//Search
+for $search in //Search
 where $search/@query-title = "My title"
 order by $search/Statistics/db-num
 return <li>$search/Statistics/db-num</li>
@@ -285,7 +563,7 @@ return <li>$search/Statistics/db-num</li>
 
 ```html
 <ul>
-for $search in blast//Search
+for $search in //Search
 where $search/@query-title = "My title"
 order by $search/Statistics/db-num
 return <li class="$search/Statistics/@hsp-len">$search/Statistics/db-num</li>
@@ -297,23 +575,17 @@ A nonsense sum of db-num here as an example.
 
 ```html
 xquery version="3.1"
-for $search in blast//Search
-let $species := $search/hits/HitDescr/@id
+for $search in //Search
+let $species := $search/hits/HitDescr/title
 group by $species
 order by $species
 return <species name="{$species}" totQuantity="{sum($search/Statistics/db-num)}"/>
 ```
 
-### Direct Element Constructors
-
-These return xml, like those above, by specifying the element and optionally its attributes.
-
-### Computed Constructors
-
-
 ## Namespaces
 
-The database namespace is statically bound as 'blast' in Basex. They can be declared in the preamble.
+Basex defaults to a static namespace for the presently opened database.
+
 These namespaces can prefix other variables with a :, including in $variables.
 If not prefixed, they are not associated with any namespace.
 A namespace declaration if in scope if it appears in an outer element or the query prologue. 
@@ -332,14 +604,6 @@ Attribute names are NOT affected by default namespace declarations.
 The main purpose of a namespace is not to point to a location where a resource resides. Instead, it is intended to provide a unique name that can be associated with a particular person or organization, much like Java package names. Therefore, namespace names are not required to be dereferencable. That is, there does not necessarily need to be an HTML page or other resource that can be accessed at this URL. The namespace name could point to a schema, an HTML page, a directory of resources, or nothing at all.
 ```
 
-## Comments
-
-XQuery comments are between : and :. They are not present in the outputted document.
-
-```html 
-<!-- XML comments will appear in the final document -->
-```
-
 ## Comparisons
 
 ### If-Then-Else
@@ -351,7 +615,7 @@ else $x - $y
 ```
 
 ```html
-for $search in (db:open('blast')//Search)
+for $search in //Search
 return if ($search/Statistics/db-num > 10)
 	   then <len>{data($search/Statistics/hsp-len)}</len>
 	   else <otherLen>{data($search/query-len)}</otherLen>
@@ -391,7 +655,7 @@ For example, BlastOutput2/Search returns false if there are no entries and true 
 ### Switch Expressions
 
 ```html
-switch ($search/HitDescr/taxid)
+switch ($search/hits/Hit/HitDescr/taxid)
 	case 9606 return "Human"
 	case 9989 return "rodentia"
 	case 2 return "bacteria"
@@ -403,7 +667,7 @@ The () empty expression is a possible return value for default.
 Multiple cases can return the same value:
 
 ```html 
-switch ($search/HitDescr/taxid)
+switch ($search/HitDescr/hits/Hit/HitDescr/taxid)
 	case 9906
 	case 9989 return "Mammal"
 	case 2 return "bacteria"
@@ -415,8 +679,8 @@ Any number of any kind of items are permitted to be RETURNED however.
 
 ```html
 	xquery version "3.1";
-	for $search in db:open('blast')//Search
-	return switch ($search/HitDescr/taxid)
+	for $search in //Search
+	return switch ($search//HitDescr/taxid)
 		case 9906
 		case 9989 return "Mammal"
 		case 2 return "bacteria"
@@ -424,13 +688,14 @@ Any number of any kind of items are permitted to be RETURNED however.
 ```
 	
 <a name="multiple"></a>
+
 ### Using parentheses to return multiple elements
 
 ```html
 if (not($prod))
 then (<empty/>)
 else (<num>{data($search/Statistics/db-num)}</num>,
-	  <species>{data($search/HitDescr/id)}</species>)
+	  <species>{data($search//HitDescr/id)}</species>)
 ```
 
 This makes sure species is included in the if-then-else expression.
@@ -438,7 +703,7 @@ This makes sure species is included in the if-then-else expression.
 At the top level of a query, no parentheses are needed, you just use commas. 
 
 ```html
-db:open('blast')//Search, db:open('blast')//Results
+//Search, //Results
 ```
 
 ### Multi-comparison
@@ -446,7 +711,7 @@ db:open('blast')//Search, db:open('blast')//Results
 The following returns true if the species is equal to Cat OR Dog.
 
 ```html
-db:open('blast')//Search/HitDescr[@id = ("Cat", "Dog")]
+//HitDescr[id = ("Cat", "Dog")]
 ```
 
 ### Not
@@ -493,14 +758,35 @@ The ! operator lets either side of the operator evaluate to zero or more items.
 
 The path operator always removes duplicates and returns in document order. The ! operator does neither.
 
+## Quantified expressions
+
+These always evaluate to booleans. They are:
+
+- every
+- some
+
+To make it into an expression using the quantifier, a binding (in) clause, and satisfies containing the test expression:
+
+```html
+every $hsp in //*:hsps 
+satisfies ($hsp/bit-score > 50)
+```
+
+As above, multiple variables can be bound by separating them with commas:
+
+```html
+some $i in (1 to 3), $j in (10,11)
+satisfies $j - $i = 7
+```
+
 # Basex
 
 ## Dynamic inputs
 
-Look for search term in all ids:
+Look for search term in all nodes with a given name:
 
 ```html
-db:open('blast')//*[name() = id][. = $searchTerm]
+//*[name() = $searchNode][. = $searchTerm]
 ```
 
 In Basex, this and more complex paths are the use case of the xquery:eval and related functions.
@@ -511,9 +797,9 @@ To bind a value.
 -b<args> Binds external variables to XQuery expressions. This flag may be specified multiple times. Variables names and their values are delimited by equality signs (=).
 ``` 
 
-Example binding the search term Nepovirus to blastQuery.xq before execution:
+Example binding the search term Nepovirus:
 
-    -b searchTerm="Nepovirus" blastQuery.xq
+    basex -b searchTerm="Nepovirus"
    
 Couples with the following in blastQuery.xq to bind searchTerm to a string (default) with virus as a default:
 
@@ -587,7 +873,7 @@ To generate an example $data similar to the xml above:
 
 ```html
 let $data := map {
-  'headers': [
+  'names': [
     'Header1', 'Header2'
   ],
   'records': (
@@ -600,3 +886,15 @@ let $data := map {
 }
 ```
 Tumbling windows can help with very big memory usage. See the [SO thread this segment is adapted from](https://stackoverflow.com/questions/66353741/basex-xquery-out-of-memory-when-writing-results-to-csv-file) for more.
+
+### Method 3: string-join and write-text-lines
+
+For each record, generate one line:
+
+    string-join($record/descendant::text(),',')
+	
+With write-text-lines:
+
+    file:write-text-lines('/tmp/output.csv',for $record in $data return string-join($record/descendant::text(),','))
+	
+This requires column mapping to be exact but bypasses csv serialisation if you need that.
