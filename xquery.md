@@ -1,7 +1,6 @@
 ---
 layout: page
-before-content: toc_beautiful.html
-toc: true
+before-content: toc_beautiful2.html
 ---
 
 # XQuery Notes
