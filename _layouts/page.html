@@ -12,6 +12,9 @@ layout: base
           {% for file in page.before-content %}
             {% include {{ file }} %}
           {% endfor %}
+          {% if page.toc %}
+          {% include toc.html html=content class="collapsible" item_class="content" %}
+          {% endif %}
         </div>
       {% endif %}
 
