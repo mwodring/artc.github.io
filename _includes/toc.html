@@ -131,7 +131,7 @@
                 {% capture anchorAttributes %}{{ anchorAttributes }} class="{{ include.anchor_class | split: '.' | join: ' ' }}"{% endcapture %}
             {% endif %}
 
-            {% capture listItem %}<button class="collapsible">+</button><a{{ anchorAttributes }}>{{ anchorBody }}</a>{% endcapture %}
+            {% capture listItem %}<a{{ anchorAttributes }}>{{ anchorBody }}</a>{% endcapture %}
         {% elsif skipNoIDs == true %}
             {% continue %}
         {% else %}
@@ -139,7 +139,7 @@
         {% endif %}
 
         {% if currLevel > lastLevel %}
-            {% capture jekyll_toc %}{{ jekyll_toc }}<button class="collapsible">+</button><{{ listModifier }}{{ subMenuClass }}>{% endcapture %}
+            {% capture jekyll_toc %}{{ jekyll_toc }}<span><button class="collapsible">+</button><{{ listModifier }}{{ subMenuClass }}></span>{% endcapture %}
         {% elsif currLevel < lastLevel %}
             {% assign repeatCount = lastLevel | minus: currLevel %}
 
@@ -152,7 +152,7 @@
             {% capture jekyll_toc %}{{ jekyll_toc }}</li>{% endcapture %}
         {% endif %}
 
-        {% capture jekyll_toc %}{{ jekyll_toc }}<button class="collapsible">+</button><li{{ listItemClass }}>{{ listItem }}{% endcapture %}
+        {% capture jekyll_toc %}{{ jekyll_toc }}<span><button class="collapsible">+</button><li{{ listItemClass }}>{{ listItem }}</span>{% endcapture %}
 
         {% assign lastLevel = currLevel %}
         {% assign firstHeader = false %}
@@ -176,7 +176,7 @@
 
         {% if rootAttributes %}
             {% assign nodes = jekyll_toc | split: '>' %}
-            {% capture jekyll_toc %}<button class="collapsible">+</button><{{ listModifier }}{{ rootAttributes }}>{{ nodes | shift | join: '>' }}>{% endcapture %}
+            {% capture jekyll_toc %}<span><button class="collapsible">+</button><{{ listModifier }}{{ rootAttributes }}>{{ nodes | shift | join: '>' }}></span>{% endcapture %}
         {% endif %}
     {% endif %}
 {% endcapture %}{% assign tocWorkspace = '' %}{{ deprecation_warnings }}{{ jekyll_toc -}}

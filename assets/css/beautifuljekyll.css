@@ -1162,7 +1162,6 @@ pre {
 }
 
 button {
-    width: auto;
     display: inline-block;
-    float: right;
+    float: left;
 }
