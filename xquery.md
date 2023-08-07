@@ -2,7 +2,7 @@
 layout: post 
 ---
 
-{% include toc.html html=content % class="collapsible" item_class="collapsible"}
+{% include toc.html html=content class="collapsible" item_class="collapsible" %}
 
 # XQuery Notes
 
@@ -572,7 +572,10 @@ return <li class="$search/Statistics/@hsp-len">$search/Statistics/db-num</li>
 <a name="windowing"></a>
 ## Windowing
 
-A window clause, like group by, creates an iteration over a sequence of items.
+A window clause, like group by, creates an iteration over a sequence of items. It creates a window based on starting and ending conditions, and evaluates the return clause once per window.
+With windows, the original order of the items is preserved, and in groups, they're arranged into those groups.
+
+e.g. 
 
 ## Namespaces
 
