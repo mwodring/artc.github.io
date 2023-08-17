@@ -1,7 +1,7 @@
 ---
 title: Novel Virus Findings
 subtitle: Morgan Wodring, Neil Boonham, Fryni Drizou, Kirsty McInnes, Sam McGreig, Ian Adams and Adrian Fox
-toc: true
+before-content: toc_beautiful.html
 ---
 
 # Novel Virus Findings in Niche Tuber Crops Sourced from eCommerce Websites
@@ -35,7 +35,7 @@ Andean Root and Tuber Crops (ARTCs) is a name given to a group of crops, domesti
 
 ARTCs remain a niche crop outside of their Andean homelands. However, they are grown in Europe and have been in some form or another for cenutiries. In France they were once called truffete acide - given the venue, some of you may be able to tell me if that's still the case! They were grown as food, as they are in South America. In England they once had some popularity as ornamentals, but in recent years they have been grown as allotment plants. A number of horticultural hobbyist websites recommend them, and even the newspaper. Below is a photograph from an English newspaper with oca tubers as an example crop to grow in response to food insecurity.
 
-![A photograph of a newspaper article titled 'How to feed 8 billion people' with a picture of oca tubers in the top left.](/assets/img/newspaper.jpg#circ){: .mx-auto.d-block :}
+![A photograph of a newspaper article titled 'How to feed 8 billion people' with a picture of oca tubers in the top left.](/assets/img/newspaper.jpg){: .mx-auto.d-block :}
 
 ## <a name="material">Material</a>
 
@@ -71,13 +71,13 @@ In addition, a likely novel satellite related to ArMV satellite was found.
 
 ### Potexvirus 
 
-![A graph of the genome and coverage of the largest Potexvirus contig. There are two high coverage regions in the first ORF (replicase) and another in the TGBP1 region. The graph stacks ORFs, coverage, and the domains in frame 1.](/assets/img/potex-graph.jpeg){: .mx-auto.d-block :}
+![A graph of the genome and coverage of the largest Potexvirus contig. There are two high coverage regions in the first ORF (replicase) and another in the TGBP1 region. The graph stacks ORFs, coverage, and the domains in frame 1.](/assets/img/potex_graph.jpeg){: .mx-auto.d-block :}
 
 ### Allexivirus 
 
 ORFs with an AUG start codon are shown. An additional start codon with the leaky GUG codon found in some Allexiviruses as also find matching in sequence identity to TGBP3 of other Allexiviruses. In this graph, MT stands for methyltransferase.
 
-![A graph of the genome and coverage of the novel Allexivirus. The coverage is highest at the end of ORF1 (replicase gene), with spikes in the triple gene block region and ORF4, the 40kDa protein of unknown function common in Allexiviruses. The graph stacks AUG/ATG ORFs, coverage, and the domains in frame 1.](/assets/img/allexi-graph.jpeg){: .mx-auto.d-block :}
+![A graph of the genome and coverage of the novel Allexivirus. The coverage is highest at the end of ORF1 (replicase gene), with spikes in the triple gene block region and ORF4, the 40kDa protein of unknown function common in Allexiviruses. The graph stacks AUG/ATG ORFs, coverage, and the domains in frame 1.](/assets/img/allexi_graph.jpeg){: .mx-auto.d-block :}
 
 ## Grow Your Own
 
