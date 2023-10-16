@@ -24,7 +24,8 @@ navbar-links:
   Projects:
     - Viruses in ARTCs : "artcs"
     - Make Pretty Phylogenies : "generate_tree"
-
+  Contact: "contact"
+  
 ################
 # --- Logo --- #
 ################
